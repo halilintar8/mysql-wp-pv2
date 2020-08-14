@@ -19,31 +19,11 @@ metadata:
   labels:
     app: wordpress
 spec:
-  storageClassName: localstorage
   accessModes:
     - ReadWriteOnce
-    - ReadOnlyMany
   resources:
     requests:
-      storage: 10Gi
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: wp-pv
-  labels:
-    type: local
-spec:
-  storageClassName: localstorage
-  capacity:
-    storage: 10Gi
-  accessModes:
-    - ReadWriteOnce
-    - ReadOnlyMany
-  hostPath:
-    # this is the path on laptop? 
-    path: "./wpb"
-
+      storage: 5Gi
 ---
 apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
 kind: Deployment
