@@ -60,7 +60,7 @@ spec:
             secretKeyRef:
               key: password
               name: mysql-pass-b5mtm4cg4t
-        image: mysql:5.6
+        image: mysql:latest
         name: mysql
         ports:
         - containerPort: 3306
@@ -101,7 +101,7 @@ spec:
             secretKeyRef:
               key: password
               name: mysql-pass-b5mtm4cg4t
-        image: wordpress:4.8-apache
+        image: wordpress:5.4.2-apache
         name: wordpress
         ports:
         - containerPort: 80
@@ -115,6 +115,38 @@ spec:
           claimName: wp-pv-claim
 ---
 apiVersion: v1
+kind: PersistentVolume
+metadata:
+  labels:
+    type: local
+  name: mysql-pv
+spec:
+  accessModes:
+  - ReadWriteOnce
+  - ReadOnlyMany
+  capacity:
+    storage: 5Gi
+  hostPath:
+    path: ./mysqlb
+  storageClassName: localstorage
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  labels:
+    type: local
+  name: wp-pv
+spec:
+  accessModes:
+  - ReadWriteOnce
+  - ReadOnlyMany
+  capacity:
+    storage: 10Gi
+  hostPath:
+    path: ./wpb
+  storageClassName: localstorage
+---
+apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   labels:
@@ -123,9 +155,11 @@ metadata:
 spec:
   accessModes:
   - ReadWriteOnce
+  - ReadOnlyMany
   resources:
     requests:
-      storage: 10Gi
+      storage: 5Gi
+  storageClassName: localstorage
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -136,6 +170,8 @@ metadata:
 spec:
   accessModes:
   - ReadWriteOnce
+  - ReadOnlyMany
   resources:
     requests:
       storage: 10Gi
+  storageClassName: localstorage
