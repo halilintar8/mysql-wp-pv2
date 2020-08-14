@@ -60,7 +60,7 @@ spec:
             secretKeyRef:
               key: password
               name: mysql-pass-b5mtm4cg4t
-        image: mysql:latest
+        image: mysql:5.6
         name: mysql
         ports:
         - containerPort: 3306
@@ -101,7 +101,7 @@ spec:
             secretKeyRef:
               key: password
               name: mysql-pass-b5mtm4cg4t
-        image: wordpress:5.4.2-apache
+        image: wordpress:4.8-apache
         name: wordpress
         ports:
         - containerPort: 80
