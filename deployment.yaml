@@ -1,5 +1,4 @@
-# Create a mysql-deployment.yaml file
-cat <<EOF > mysql-deployment.yaml
+
 apiVersion: v1
 kind: Service
 metadata:
@@ -27,7 +26,7 @@ spec:
     requests:
       storage: 10Gi
 ---
-apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+apiVersion: apps/v1 # ok for versions before 1.9.0 use apps/v1beta2
 kind: Deployment
 metadata:
   name: wordpress-mysql
@@ -67,10 +66,8 @@ spec:
         persistentVolumeClaim:
           claimName: mysql-pv-claim
 
-EOF
+---
 
-# Create a wordpress-deployment.yaml file
-cat <<EOF > wordpress-deployment.yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -140,10 +137,7 @@ spec:
         persistentVolumeClaim:
           claimName: wp-pv-claim
 
-EOF
-
-# Create a base/kustomization.yaml
-cat <<EOF > base/kustomization.yaml
+---
 secretGenerator:
     - name: mysql-pass
       literals:
@@ -151,5 +145,4 @@ secretGenerator:
     resources:
       - mysql-deployment.yaml
       - wordpress-deployment.yaml
-    
-EOF
+
