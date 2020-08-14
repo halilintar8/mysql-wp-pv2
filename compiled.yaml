@@ -127,7 +127,7 @@ spec:
   capacity:
     storage: 5Gi
   hostPath:
-    path: ./mysqlb
+    path: /home/jenkins/agent/workspace/mysql-wp-pv/mysqlb
   storageClassName: localstorage
 ---
 apiVersion: v1
@@ -143,7 +143,7 @@ spec:
   capacity:
     storage: 10Gi
   hostPath:
-    path: ./wpb
+    path: /home/jenkins/agent/workspace/mysql-wp-pv/wpb
   storageClassName: localstorage
 ---
 apiVersion: v1
