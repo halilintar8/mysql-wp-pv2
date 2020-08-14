@@ -73,7 +73,7 @@ pipeline{
                     echo "Deploy to Kubernetes Cluster c"
                     script {
                         step([$class: 'KubernetesDeploy', authMethod: 'certs', apiServerUrl: 'https://10.8.1.120:6443', credentialsId: 'k8sCertAuth', config: 'compiled.yaml', variableState: 'ORIGIN_REPO,REPO,IMAGE_TAG4'])
-                        // step([$class: 'KubernetesDeploy', authMethod: 'certs', apiServerUrl: 'https://10.8.1.120:6443', credentialsId:'k8sCertAuth', config: './',variableState: 'ORIGIN_REPO,REPO,IMAGE_TAG4'])
+                        /// step([$class: 'KubernetesDeploy', authMethod: 'certs', apiServerUrl: 'https://10.8.1.120:6443', credentialsId:'k8sCertAuth', config: './',variableState: 'ORIGIN_REPO,REPO,IMAGE_TAG4'])
                     }
                 }
             }
