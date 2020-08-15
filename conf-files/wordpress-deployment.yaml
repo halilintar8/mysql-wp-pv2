@@ -46,7 +46,8 @@ spec:
     spec:
       containers:
       # - image: wordpress:4.8-apache
-      - image: wordpress:5.4.2-apache
+      # - image: wordpress:5.4.2-apache
+      - image: wordpress:latest
         name: wordpress
         env:
         - name: WORDPRESS_DB_HOST
