@@ -68,10 +68,6 @@ spec:
         volumeMounts:
         - mountPath: /var/lib/mysql
           name: mysql-persistent-storage
-      volumes:
-      - name: mysql-persistent-storage
-        persistentVolumeClaim:
-          claimName: mysql-pv-claim
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -109,7 +105,3 @@ spec:
         volumeMounts:
         - mountPath: /var/www/html
           name: wordpress-persistent-storage
-      volumes:
-      - name: wordpress-persistent-storage
-        persistentVolumeClaim:
-          claimName: wp-pv-claim
