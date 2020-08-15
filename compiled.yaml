@@ -65,9 +65,9 @@ spec:
         ports:
         - containerPort: 3306
           name: mysql
-        volumeMounts:
-        - mountPath: /var/lib/mysql
-          name: mysql-persistent-storage
+      volumes:
+      - name: mysql-temp-storage
+      - db_data: /var/lib/mysql
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -102,6 +102,3 @@ spec:
         ports:
         - containerPort: 80
           name: wordpress
-        volumeMounts:
-        - mountPath: /var/www/html
-          name: wordpress-persistent-storage
